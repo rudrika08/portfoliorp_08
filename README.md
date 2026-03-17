@@ -1,68 +1,58 @@
-# [nihal.com.np](https://nihal.com.np)
+# Rudrika Panigrahi Portfolio
 
-Experienced Senior Software Engineer with over five years of expertise as a Full Stack Developer, specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.
+Personal portfolio website of Rudrika Panigrahi, a B.Tech Computer Science student and Full-Stack Developer with interest in AI/ML.
 
-Skilled in designing scalable, secure, and efficient systems, with a proven track record of collaborating with remote, cross-functional teams across the US, Australia, and Nepal. Demonstrated success in delivering impactful solutions within highly regulated environments, including healthcare projects, with expertise in HIPAA and SOC2 compliance. Proficient in optimizing system performance and mentoring teams to achieve sustained technical excellence.
+This project is built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui components.
 
+## Tech Stack
 
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- shadcn/ui (Radix UI)
+- Framer Motion
+- Formspree (contact form submissions)
 
 ## Getting Started
 
-Follow these steps to set up the project locally:
-
 ### Prerequisites
 
-Ensure you have [npm](https://www.npmjs.com/) installed on your system.
+- Node.js 18+
+- pnpm
 
 ### Installation
 
-1. Clone the repository using SSH:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/rudrika08/portfoliorp_08.git
    ```
-   git clone git@github.com:maskeynihal/nihal.com.np.git
-   ```
-2. Navigate to the project directory:
-   ```
-   cd nihal.com.np
+2. Move into the project directory:
+   ```bash
+   cd portfoliorp_08
    ```
 3. Install dependencies:
-   ```
-   npm install
+   ```bash
+   pnpm install
    ```
 
-### Running the Project
+### Run in Development
 
-To start the development server, run:
+```bash
+pnpm dev
 ```
-npm run dev
+
+App runs at http://localhost:3000.
+
+### Build for Production
+
+```bash
+pnpm build
+pnpm start
 ```
-
-### Building for Production
-
-To create a production build, run:
-```
-npm run build
-```
-The output will be in the `dist` directory.
-
-## Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix:
-   ```
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```
-   git commit -m "Description of changes"
-   ```
-4. Push to your fork:
-   ```
-   git push origin feature-name
-   ```
-5. Open a pull request.
 
 ## Contact
 
-For any inquiries or support, please contact us at [contact@nihal.com.np](mailto:contact@nihal.com.np).
+- Email: [rudrika.812@gmail.com](mailto:rudrika.812@gmail.com)
+- GitHub: [rudrika08](https://github.com/rudrika08)
+- LinkedIn: [rudrika-panigrahi](https://linkedin.com/in/rudrika-panigrahi)
