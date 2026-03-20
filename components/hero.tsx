@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowUpCircle, Download, Github, Linkedin, Mail } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function Hero() {
@@ -9,6 +10,16 @@ export default function Hero() {
     <section id="home" className="py-20 md:py-32 flex flex-col items-center justify-center min-h-[90vh]">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center space-y-4 text-center">
+          <div className="relative h-36 w-36 overflow-hidden rounded-full border-2 border-primary/40 shadow-[0_0_30px_rgba(236,168,154,0.35)] sm:h-40 sm:w-40">
+            <Image
+              src="/profile.png"
+              alt="Rudrika Panigrahi"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 640px) 144px, 160px"
+            />
+          </div>
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
               Hi, I&apos;m <span className="gradient-text">Rudrika Panigrahi</span>
