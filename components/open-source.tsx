@@ -13,6 +13,14 @@ export default function OpenSource() {
       link: "https://github.com/fed-tech",
       website: "https://www.fedkiit.com/",
     },
+    {
+      title: "C25Go - Campus 25 Navigation App",
+      description:
+        "Progressive Web App for Campus 25 navigation with shortest-path routing, multi-floor transitions, POI search, real-time distance calculation, and admin map editor for node/POI management.",
+      tags: ["React 19", "Vite", "PWA", "React Router", "React Konva", "Fabric.js"],
+      link: "https://github.com/Ritam-Vaskar/c25map",
+      website: "https://campus25fed.vercel.app",
+    },
   ]
 
   return (
@@ -25,9 +33,9 @@ export default function OpenSource() {
           </p>
         </div>
 
-        <div className="max-w-lg mx-auto">
+        <div className="mx-auto flex max-w-5xl flex-wrap gap-6">
           {contributions.map((contribution, index) => (
-            <div key={index}>
+            <div key={index} className="w-full md:w-[calc(50%-0.75rem)]">
               <Card className="h-full flex flex-col">
                 <CardContent className="p-6 flex-1 flex flex-col">
                   <div className="mb-4">
@@ -42,7 +50,7 @@ export default function OpenSource() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col gap-2 sm:flex-row">
                     <Button variant="outline" size="sm" asChild className="flex-1">
                       <Link href={contribution.link} target="_blank" rel="noopener noreferrer">
                         <Github className="mr-2 h-4 w-4" /> GitHub

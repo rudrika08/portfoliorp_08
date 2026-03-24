@@ -75,7 +75,7 @@ export default function Contact() {
                           required
                         />
                       </div>
-                      <Button type="submit" className="w-full">
+                      <Button type="submit" className="w-full bg-[#c88a7d] text-white hover:bg-[#b67b6f]">
                         Send Message
                       </Button>
                       <noscript>

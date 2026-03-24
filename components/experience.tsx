@@ -5,16 +5,6 @@ import Skills from "./skills-content"
 export default function Experience() {
   const experiences = [
     {
-      title: "Summer Intern",
-      company: "ISRO (RO/SCOF)",
-      period: "May 2025 - June 2025",
-      location: "India",
-      achievements: [
-        "Developed and deployed a production web portal for IYD-2025 using Java and JSP",
-        "Improved internal digital workflows and coordination across teams",
-      ],
-    },
-    {
       title: "Senior Technical Executive",
       company: "FED KIIT",
       period: "November 2024 - Present",
@@ -22,6 +12,16 @@ export default function Experience() {
       achievements: [
         "Developed C25 Campus Map, a production-ready interactive campus navigation system",
         "Integrated automated certificate distribution and QR-based attendance tracking systems",
+      ],
+    },
+    {
+      title: "Summer Intern",
+      company: "ISRO (RO/SCOF)",
+      period: "May 2025 - June 2025",
+      location: "India",
+      achievements: [
+        "Developed and deployed a production web portal for IYD-2025 using Java and JSP",
+        "Improved internal digital workflows and coordination across teams",
       ],
     },
   ]

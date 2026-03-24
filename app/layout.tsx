@@ -1,8 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Analytics } from "@/components/analytics"
-import ClientLayout from "./client"
 import { Suspense } from "react"
+import { Analytics } from "@/components/analytics"
+import NoScriptStyles from "@/components/noscript-styles"
+import ClientLayout from "./client"
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Rudrika Panigrahi | Full-Stack Developer & AI/ML Enthusiast",
@@ -19,11 +21,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Rudrika Panigrahi" }],
   creator: "Rudrika Panigrahi",
+  manifest: "/manifest.json",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/svg+xml" },
+      { url: "/profile.png", type: "image/png", sizes: "512x512" },
     ],
+    shortcut: ["/favicon.ico"],
     apple: [{ url: "/apple-touch-icon.png" }],
   },
   openGraph: {
@@ -36,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Rudrika Panigrahi Portfolio",
     images: [
       {
-        url: "/favicon.png",
+        url: "/profile.png",
         width: 512,
         height: 512,
         alt: "Rudrika Panigrahi Logo",
@@ -49,13 +53,13 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Rudrika Panigrahi, a B.Tech Computer Science student and Full-Stack Developer specializing in React.js, Node.js, FastAPI, and AI/ML.",
     creator: "@rudrika_p",
-    images: ["/favicon.png"],
+    images: ["/profile.png"],
   },
   robots: {
     index: true,
     follow: true,
   },
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -64,14 +68,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
-      <Suspense>
-        <ClientLayout>{children}</ClientLayout>
-      </Suspense>
-      <Analytics />
-    </>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <NoScriptStyles />
+      </head>
+      <body>
+        <Suspense>
+          <ClientLayout>{children}</ClientLayout>
+        </Suspense>
+        <Analytics />
+      </body>
+    </html>
   )
 }
-
-
-import './globals.css'

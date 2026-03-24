@@ -37,7 +37,7 @@ export default function Hero() {
             <p className="text-lg">Building full-stack web applications and AI-based systems with a strong foundation in DSA and collaborative development</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Button asChild size="lg" className="rounded-full">
+            <Button asChild size="lg" className="rounded-full bg-[#c88a7d] text-white hover:bg-[#b67b6f]">
               <Link href="#contact">Get In Touch</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full">

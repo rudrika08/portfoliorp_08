@@ -7,9 +7,9 @@ import { ModeToggle } from "./mode-toggle"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 
 // Updated nav items - removed Skills as it's now part of Experience
 const navItems = [
@@ -26,7 +26,6 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
-  const pathname = usePathname()
 
   // Function to determine which section is currently in view
   const determineActiveSection = useCallback(() => {
@@ -40,8 +39,10 @@ export default function Header() {
       const section = document.getElementById(allSections[i])
       if (section) {
         const rect = section.getBoundingClientRect()
+        const triggerPoint = window.innerHeight * 0.3
+
         // If the section is in the viewport (with some buffer for better UX)
-        if (rect.top <= 150 && rect.bottom >= 150) {
+        if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
           // Map to the closest navbar item if it's not in the navbar
           const sectionId = allSections[i]
           if (sectionId === "open-source") return "projects"
@@ -72,16 +73,33 @@ export default function Header() {
   // Smooth scroll to section when clicking nav items
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
+    if (typeof window === "undefined") return
+
     const targetId = href.substring(1)
-    const element = document.getElementById(targetId)
-    if (element) {
+    const scrollAfterLayoutSettles = () => {
+      const element = document.getElementById(targetId)
+      if (!element) return
+
+      const offset = window.innerWidth >= 768 ? 80 : 64
+      const top = element.getBoundingClientRect().top + window.scrollY - offset
+
       window.scrollTo({
-        top: element.offsetTop - 80, // Offset for header height
+        top,
         behavior: "smooth",
       })
+
+      // Keep URL hash in sync without triggering default jump.
+      window.history.replaceState(null, "", href)
       setActiveSection(targetId)
-      if (isOpen) setIsOpen(false)
     }
+
+    if (isOpen) {
+      setIsOpen(false)
+      setTimeout(scrollAfterLayoutSettles, 220)
+      return
+    }
+
+    scrollAfterLayoutSettles()
   }
 
   return (
@@ -99,8 +117,12 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2"
           >
-            <span className="text-2xl font-bold gradient-text">RP</span>
+            <div className="relative h-9 w-9 overflow-hidden rounded-full border border-primary/50 shadow-[0_0_10px_rgba(236,168,154,0.35)]">
+              <Image src="/profile.png" alt="Rudrika Panigrahi" fill className="object-cover" sizes="36px" />
+            </div>
+            <span className="text-xl font-bold gradient-text">RP</span>
           </motion.div>
         </Link>
 
