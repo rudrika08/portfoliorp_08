@@ -4,6 +4,7 @@ import { Suspense } from "react"
 import { Analytics } from "@/components/analytics"
 import NoScriptStyles from "@/components/noscript-styles"
 import ClientLayout from "./client"
+// @ts-ignore - Next.js handles global CSS imports at build time
 import "./globals.css"
 
 export const metadata: Metadata = {
