@@ -7,6 +7,13 @@ import Link from "next/link"
 export default function Certificates() {
   const certificates = [
     {
+      title: "Supervised Machine Learning: Regression and Classification",
+      issuer: "DeepLearning.AI (Coursera)",
+      date: "Completed May 2026",
+      skills: ["Regression", "Classification", "Model Evaluation", "Python", "Scikit-learn"],
+      credentialLink: "https://www.coursera.org/account/accomplishments/verify/F83YMZ3DVKE6",
+    },
+    {
       title: "Frontend Developer (React)",
       issuer: "HackerRank",
       date: "Verified Credential",
