@@ -4,11 +4,12 @@ import { Suspense } from "react"
 import { Analytics } from "@/components/analytics"
 import NoScriptStyles from "@/components/noscript-styles"
 import ClientLayout from "./client"
+import ChatWidgetLoader from "@/components/chat/chat-widget-loader"
 // @ts-ignore - Next.js handles global CSS imports at build time
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Rudrika Panigrahi | Full-Stack Developer & AI/ML Enthusiast",
+  title: "Rudrika Panigrahi | Full-Stack Developer & AI/ML Engineer",
   description:
     "Portfolio of Rudrika Panigrahi, a B.Tech Computer Science student and Full-Stack Developer specializing in React.js, Node.js, FastAPI, and AI/ML.",
   keywords: [
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/profile.png", type: "image/png", sizes: "512x512" },
+      { url: "/placeholder-user.jpg", type: "image/jpeg", sizes: "512x512" },
     ],
     shortcut: ["/favicon.ico"],
     apple: [{ url: "/apple-touch-icon.png" }],
@@ -35,13 +36,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://rudrikapanigrahi.com",
-    title: "Rudrika Panigrahi | Full-Stack Developer & AI/ML Enthusiast",
+    title: "Rudrika Panigrahi | Full-Stack Developer & AI/ML Engineer",
     description:
       "Portfolio of Rudrika Panigrahi, a B.Tech Computer Science student and Full-Stack Developer specializing in React.js, Node.js, FastAPI, and AI/ML.",
     siteName: "Rudrika Panigrahi Portfolio",
     images: [
       {
-        url: "/profile.png",
+        url: "/placeholder-user.jpg",
         width: 512,
         height: 512,
         alt: "Rudrika Panigrahi Logo",
@@ -50,11 +51,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rudrika Panigrahi | Full-Stack Developer & AI/ML Enthusiast",
+    title: "Rudrika Panigrahi | Full-Stack Developer & AI/ML Engineer",
     description:
       "Portfolio of Rudrika Panigrahi, a B.Tech Computer Science student and Full-Stack Developer specializing in React.js, Node.js, FastAPI, and AI/ML.",
     creator: "@rudrika_p",
-    images: ["/profile.png"],
+    images: ["/placeholder-user.jpg"],
   },
   robots: {
     index: true,
@@ -77,6 +78,7 @@ export default function RootLayout({
         <Suspense>
           <ClientLayout>{children}</ClientLayout>
         </Suspense>
+        <ChatWidgetLoader />
         <Analytics />
       </body>
     </html>

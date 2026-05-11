@@ -10,7 +10,7 @@ export default function About() {
     },
     {
       icon: <Brain className="h-10 w-10 text-primary" />,
-      title: "AI/ML Enthusiast",
+      title: "AI/ML Engineer",
       description: "Experience with LLM Agents, NLP, Scikit-learn, and Vector Databases",
     },
     {
@@ -32,18 +32,20 @@ export default function About() {
           <div className="space-y-12">
             <div className="space-y-4 text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Me</h2>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Computer Science undergraduate at KIIT University with experience building full-stack web applications
-                and AI-based systems.
+              <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl/relaxed">
+                Full-Stack Developer & AI/ML Engineer pursuing B.Tech in Computer Science at KIIT University.
               </p>
             </div>
 
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
-                Strong foundation in data structures, problem solving, and collaborative software development.
-                Experienced in designing scalable systems with modern technologies including React, Node.js, FastAPI,
-                and MongoDB. Passionate about AI/ML with hands-on experience in LLM Agents, NLP, and vector databases
-                for building intelligent applications.
+            <div className="mx-auto max-w-3xl space-y-6">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                I build scalable web applications and intelligent AI systems at the intersection of modern engineering and machine learning. My expertise spans the full stack — from responsive React frontends to robust Node.js and FastAPI backends, with MongoDB for data persistence.
+              </p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                Beyond traditional full-stack development, I push boundaries with advanced AI technologies: LLM Agents, Retrieval-Augmented Generation (RAG), Natural Language Processing, and Vector Databases. My focus is on shipping production-ready systems that solve real-world problems.
+              </p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                Currently exploring the intersection of intelligent systems and practical products — where cutting-edge AI meets user-centric design.
               </p>
             </div>
 
