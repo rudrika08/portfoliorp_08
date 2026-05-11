@@ -7,22 +7,33 @@ import { queryCache } from './cache'
 const SIMILARITY_THRESHOLD = 0.55
 const TOP_K = 5
 
-if (!process.env.GEMINI_API_KEY) {
-  throw new Error('GEMINI_API_KEY is not set')
-}
-if (!process.env.GROQ_API_KEY) {
-  throw new Error('GROQ_API_KEY is not set')
-}
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
-
-// Embedding: Gemini (free tier, separate quota from generation)
-const embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-001' })
-
-// Generation: Groq — llama-3.1-8b-instant (fast, free tier, not deprecated)
-// Alternative for higher quality: 'llama-3.3-70b-versatile' (slower, lower rate limits)
+// Generation model constant
 const GROQ_MODEL = 'llama-3.3-70b-versatile'
+
+// ─────────────────────────────────────────────────────────────
+// Lazy clients — instantiated on first use, not at module load.
+// This prevents build-time crashes when env vars are not yet
+// injected (e.g. Vercel build step).
+// ─────────────────────────────────────────────────────────────
+let _embeddingModel: ReturnType<GoogleGenerativeAI['getGenerativeModel']> | null = null
+let _groq: Groq | null = null
+
+function getEmbeddingModel() {
+  if (_embeddingModel) return _embeddingModel
+  const key = process.env.GEMINI_API_KEY
+  if (!key) throw new Error('GEMINI_API_KEY is not set')
+  const genAI = new GoogleGenerativeAI(key)
+  _embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-001' })
+  return _embeddingModel
+}
+
+function getGroq() {
+  if (_groq) return _groq
+  const key = process.env.GROQ_API_KEY
+  if (!key) throw new Error('GROQ_API_KEY is not set')
+  _groq = new Groq({ apiKey: key })
+  return _groq
+}
 
 let cachedEmbeddings: EmbeddingRecord[] | null = null
 
@@ -47,7 +58,7 @@ function loadEmbeddings(): EmbeddingRecord[] {
 // Prompt Builder
 // ─────────────────────────────────────────────────────────────
 function buildSystemPrompt(context: string): string {
-  return `You are an AI assistant representing Rudrika Panigrahi's professional portfolio.
+  return `You are Luna, an AI assistant representing Rudrika Panigrahi's professional portfolio.
 
 STRICT RULES:
 - Use ONLY the provided context
@@ -84,13 +95,13 @@ export interface RAGResult {
 // ─────────────────────────────────────────────────────────────
 async function embedQuery(query: string): Promise<number[]> {
   try {
-    const result = await embeddingModel.embedContent(
+    const result = await getEmbeddingModel().embedContent(
       `task: search result | query: ${query}`
     )
     return result.embedding.values
   } catch (err) {
-    console.error('[RAG] Query embedding failed:', err) // <-- check your terminal for this
-    throw err // throw the ORIGINAL error, not a new generic one
+    console.error('[RAG] Query embedding failed:', err)
+    throw err
   }
 }
 
@@ -125,7 +136,7 @@ export async function runRAGQuery(query: string): Promise<RAGResult> {
 
     if (results.length === 0) {
       const fallback =
-        "I couldn't find that in Rudrika's portfolio. Try asking about her projects, skills, experience, or contact information."
+        "I'm Luna! I couldn't find that in Rudrika's portfolio. Try asking about her projects, skills, experience, or contact information."
       queryCache.set(query, { answer: fallback, sources: [] })
       return { answer: fallback, sources: [], cached: false }
     }
@@ -139,7 +150,7 @@ export async function runRAGQuery(query: string): Promise<RAGResult> {
       title: r.chunk.title,
     }))
 
-    const response = await groq.chat.completions.create({
+    const response = await getGroq().chat.completions.create({
       model: GROQ_MODEL,
       messages: [
         { role: 'system', content: buildSystemPrompt(context) },
@@ -156,7 +167,7 @@ export async function runRAGQuery(query: string): Promise<RAGResult> {
   } catch (err) {
     console.error('[RAG] Query pipeline failed:', err)
     return {
-      answer: "I'm having trouble accessing the AI assistant right now. Please try again later.",
+      answer: "I'm having trouble right now. Please try again in a moment.",
       sources: [],
       cached: false,
     }
@@ -193,7 +204,7 @@ export async function runRAGStream(
 
     if (results.length === 0) {
       const fallback =
-        "I couldn't find that in Rudrika's portfolio. Try asking about her projects, skills, experience, or contact information."
+        "I'm Luna! I couldn't find that in Rudrika's portfolio. Try asking about her projects, skills, experience, or contact information."
       queryCache.set(query, { answer: fallback, sources: [] })
       send({ token: fallback, done: false })
       send({ done: true, sources: [], cached: false })
@@ -215,7 +226,7 @@ export async function runRAGStream(
     let fullAnswer = ''
 
     try {
-      const stream = await groq.chat.completions.create({
+      const stream = await getGroq().chat.completions.create({
         model: GROQ_MODEL,
         messages: [
           { role: 'system', content: buildSystemPrompt(context) },
@@ -235,7 +246,7 @@ export async function runRAGStream(
       }
     } catch (streamErr) {
       console.error('[RAG] Streaming failed:', streamErr)
-      send({ token: "I'm having trouble accessing the AI assistant right now. Please try again later.", done: false })
+      send({ token: "I'm having trouble right now. Please try again in a moment.", done: false })
       send({ done: true, sources: [], cached: false })
       controller.close()
       return
@@ -246,7 +257,7 @@ export async function runRAGStream(
     controller.close()
   } catch (err) {
     console.error('[RAG] Stream pipeline failed:', err)
-    send({ token: "I'm having trouble accessing the AI assistant right now. Please try again later.", done: false })
+    send({ token: "I'm having trouble right now. Please try again in a moment.", done: false })
     send({ done: true, sources: [], cached: false })
     controller.close()
   }
