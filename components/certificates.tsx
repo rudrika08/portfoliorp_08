@@ -16,7 +16,7 @@ export default function Certificates() {
     {
       title: "Frontend Developer (React)",
       issuer: "HackerRank",
-      date: "Verified Credential",
+      date: "Completed May 2026",
       skills: ["React", "JavaScript", "CSS"],
       credentialLink: "https://www.hackerrank.com/certificates/29d25180739c",
     },
