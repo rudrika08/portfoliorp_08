@@ -121,7 +121,7 @@ export default function Header() {
             className="flex items-center gap-2"
           >
             <div className="relative h-9 w-9 overflow-hidden rounded-full border border-primary/50 shadow-[0_0_10px_rgba(236,168,154,0.35)]">
-              <Image src="/profile.png" alt="Rudrika Panigrahi" fill className="object-cover" sizes="36px" />
+              <Image src="https://cdn.prod.website-files.com/66ffb182a2a1dbe73904d0b5/6a015c1d698a03eea736315d_d0535adc4d0fd4cb97324be68410a744_ChatGPT%20Image%20May%2011%2C%202026%2C%2009_56_26%20AM.png" alt="Rudrika Panigrahi" fill className="object-cover" sizes="36px" />
             </div>
             <span className="text-xl font-bold gradient-text">RP</span>
           </motion.div>
