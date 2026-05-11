@@ -7,27 +7,35 @@ import OpenSource from "./open-source"
 export default function Projects() {
   const projects = [
     {
+      title: "Tourism Analytics Dashboard",
+      description:
+        "Data engineering project processing tourism booking data with automated ETL pipeline, real-time analytics visualization, and insights into tourism trends. Features Kafka for streaming, Spark for processing, PostgreSQL for storage, Airflow for orchestration, and Streamlit with Plotly for interactive dashboards.",
+      tags: ["Python", "PostgreSQL", "Apache Kafka", "Apache Spark", "Airflow", "Docker", "Streamlit", "Plotly"],
+      codeLink: "https://github.com/rudrika08",
+      liveLink: "https://lnkd.in/g9RvWv9D",
+    },
+    {
       title: "StaySync",
       description:
         "AI-Powered Group Inventory Platform for MICE events with multi-role RBAC, real-time WebSocket inventory tracking, AI chatbot using LLM APIs and vector search, and Razorpay payment integration.",
       tags: ["React", "Node.js", "FastAPI", "MongoDB", "Qdrant", "OpenAI", "Docker"],
-      codeLink: "https://github.com/rudrika08",
-      liveLink: null,
+      codeLink: "https://github.com/Ritam-Vaskar/SyncStay",
+      liveLink: "https://sync-stay-murex.vercel.app/",
     },
     {
       title: "Agentic AI Banking Platform",
       description:
         "Multi-agent AI system for NBFC loan onboarding covering KYC, risk assessment (FOIR checks), and decisioning with stateful context and human-in-the-loop escalation routing.",
       tags: ["Python", "Multi-Agent AI", "Stateful Workflows"],
-      codeLink: "https://github.com/rudrika08",
-      liveLink: null,
+      codeLink: "https://github.com/Ritam-Vaskar/bank-agent-nbfc",
+      liveLink: "https://loanagent.ritamvaskar.tech/dashboard",
     },
     {
       title: "Twitter Sentiment Analyser",
       description:
         "ML classifier (positive/negative/neutral) trained on Sentiment140 (1.6M tweets) with full NLP preprocessing pipeline; deployed as a real-time Streamlit web app.",
       tags: ["Python", "NLP", "Scikit-learn", "TF-IDF", "Streamlit"],
-      codeLink: "https://github.com/rudrika08",
+      codeLink: "https://github.com/rudrika08/Twitter_Sentimental_Analyzer",
       liveLink: null,
     },
     {
@@ -35,8 +43,8 @@ export default function Projects() {
       description:
         "Full-stack blogging platform with RESTful APIs (blogs, comments, likes, categories), JWT authentication, and React Quill rich text editor.",
       tags: ["React", "Node.js", "Express.js", "MongoDB", "JWT"],
-      codeLink: "https://github.com/rudrika08",
-      liveLink: null,
+      codeLink: "https://github.com/rudrika08/Syntrax",
+      liveLink: "https://syntrax-krh3.vercel.app/",
     },
   ]
 

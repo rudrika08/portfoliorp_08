@@ -13,11 +13,11 @@ export default function Skills() {
     },
     {
       category: "Databases",
-      skills: ["MongoDB", "Qdrant (Vector DB)"],
+      skills: ["MongoDB", "MySQL", "PostgreSQL"],
     },
     {
       category: "AI / ML",
-      skills: ["LLM Agents", "NLP", "Scikit-learn"],
+      skills: ["LLM Agents", "NLP", "Scikit-learn", "Qdrant(Vector DB)"],
     },
     {
       category: "DevOps & Tools",
