@@ -42,7 +42,7 @@ export default function Hero() {
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full">
               <a
-                href="https://drive.google.com/file/d/171DyS8_YgS_W9rBEGQ4KMjoma9NqaQbC/view?usp=sharing"
+                href="https://drive.google.com/file/d/1TM2QYqisZyOxrg4Y-I8WAi2ulSEeJWLO/view?usp=sharing"
 
                 target="_blank"
                 rel="noopener noreferrer"
